@@ -92,9 +92,11 @@ contract FundMe {
      *  @param fundingAddress the address of the funder
      *  @return the amount funded
      */
-    function getAddressToAmountFunded(
-        address fundingAddress
-    ) public view returns (uint256) {
+    function getAddressToAmountFunded(address fundingAddress)
+        public
+        view
+        returns (uint256)
+    {
         return s_addressToAmountFunded[fundingAddress];
     }
 
