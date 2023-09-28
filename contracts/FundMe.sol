@@ -36,6 +36,14 @@ contract FundMe {
         i_owner = msg.sender;
     }
 
+
+    // The modifier order for a function should be:
+    //  1.Visibility
+    //  2.Mutability
+    //  3.Virtual
+    //  4.Override
+    //  5.Custom modifiers
+
     /// @notice Funds our contract based on the ETH/USD price
     function fund() public payable {
         require(
