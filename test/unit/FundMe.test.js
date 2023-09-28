@@ -51,6 +51,7 @@ const { developmentChains } = require("../../helper-hardhat-config")
                   assert.equal(response, deployer)
               })
           })
+
           describe("withdraw", function () {
               beforeEach(async () => {
                   await fundMe.fund({ value: sendValue })
@@ -144,4 +145,17 @@ const { developmentChains } = require("../../helper-hardhat-config")
                   ).to.be.revertedWith("FundMe__NotOwner")
               })
           })
-      })
+
+      // Additional Test Cases:
+      describe("getters", function () {
+        it("Returns the owner of the contract", async () => {
+          const owner = await fundMe.getOwner();
+          assert.equal(owner, deployer, "Owner should match deployer");
+        });
+
+        it("Returns the price feed contract address", async () => {
+          const priceFeedAddress = await fundMe.getPriceFeed();
+          assert.equal(priceFeedAddress, mockV3Aggregator.address, "Price feed address should match");
+        });
+      });
+    });
