@@ -8,7 +8,7 @@ This is a section of the Javascript Blockchain/Smart Contract FreeCodeCamp Cours
 
 - [Hardhat Fund Me](#hardhat-fund-me)
 - [Getting Started](#getting-started)
-  - [Security Considerations](security-considerations)
+  - [Security Considerations](#security-considerations)
   - [Requirements](#requirements)
   - [Quickstart](#quickstart)
   - [Typescript](#typescript)
