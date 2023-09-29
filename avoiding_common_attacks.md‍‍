@@ -42,3 +42,6 @@ event PriceFeedUpdated(address previousPriceFeed, address newPriceFeed);
 require(newPriceFeedAddress != address(0), "Invalid address provided");
 ```
 
+## 7. **Library Usage for Accurate Calculations**: The contract leverages the Chainlink Price Feed interface and a custom library (`PriceConverter`) for accurate price conversions. This reduces the risk of incorrect calculations related to price feeds.
+
+These security measures and best practices make the FundMe smart contract more resilient against common attacks such as unauthorized access, underfunding, and reentrancy attacks. However, it's essential to conduct thorough testing and audits to ensure the contract's security before deploying it to a production environment.
