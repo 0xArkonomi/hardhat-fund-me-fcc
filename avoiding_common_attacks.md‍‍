@@ -8,3 +8,8 @@ modifier onlyOwner() {
     _;
 }
 ```
+## 2. **Custom Error Handling**: The contract employs custom error messages and the `revert` statement for error handling. For instance, the `FundMe__NotOwner` error is used when a non-owner tries to execute owner-only functions. Meaningful error messages improve the contract's usability and security.
+
+```solidity
+error FundMe__NotOwner();
+```
