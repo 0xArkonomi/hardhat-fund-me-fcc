@@ -33,7 +33,7 @@ This project is apart of the Hardhat FreeCodeCamp video.
 
 ## Security Considerations
 
-- [Avoiding Common Attacks](avoiding_common_attacks.md)
+- [Avoiding Common Attacks](https://github.com/0xArkonomi/hardhat-fund-me-fcc/blob/personalize-project/avoiding_common_attacks.md%E2%80%8D%E2%80%8D)
 
 ## Requirements
 
