@@ -105,6 +105,14 @@ contract FundMe {
         emit FundsWithdrawn(owner, address(this).balance);
     }
 
+    function updatePriceFeed(address newPriceFeedAddress) public onlyOwner {
+        require(newPriceFeedAddress != address(0), "Invalid address provided");
+        AggregatorV3Interface previousPriceFeed = priceFeed;
+        priceFeed = AggregatorV3Interface(newPriceFeedAddress);
+
+        emit PriceFeedUpdated(address(previousPriceFeed), newPriceFeedAddress);
+    }
+
     /** @notice Gets the amount that an address has funded
      *  @param fundingAddress the address of the funder
      *  @return the amount funded
