@@ -8,8 +8,16 @@ modifier onlyOwner() {
     _;
 }
 ```
+
 ## 2. **Custom Error Handling**: The contract employs custom error messages and the `revert` statement for error handling. For instance, the `FundMe__NotOwner` error is used when a non-owner tries to execute owner-only functions. Meaningful error messages improve the contract's usability and security.
 
 ```solidity
 error FundMe__NotOwner();
 ```
+
+## 3. **Minimum Funding Requirement**: To prevent underfunding, the contract enforces a minimum funding requirement (`MINIMUM_USD`) in USD-equivalent Ether. The `fund` function checks whether the contributed amount meets this requirement, guarding against contributions that are too small.
+
+```solidity
+require(msg.value.getConversionRate(priceFeed) >= MINIMUM_USD, "You need to spend more ETH!");
+```
+
