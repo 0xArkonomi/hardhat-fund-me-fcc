@@ -27,3 +27,12 @@ require(msg.value.getConversionRate(priceFeed) >= MINIMUM_USD, "You need to spen
 (bool success, ) = owner.call{value: address(this).balance}("");
 require(success, "Withdrawal failed.");
 ```
+
+## 5. **Event Logging for Transparency**: The contract logs important actions and state changes with events like `FundContribution`, `FundsWithdrawn`, and `PriceFeedUpdated`. These events provide transparency to users and allow them to monitor contract activities.
+
+```solidity
+event FundContribution(address indexed funder, uint256 amount);
+event FundsWithdrawn(address indexed owner, uint256 amount);
+event PriceFeedUpdated(address previousPriceFeed, address newPriceFeed);
+```
+
