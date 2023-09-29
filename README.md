@@ -4,12 +4,11 @@
 
 This is a section of the Javascript Blockchain/Smart Contract FreeCodeCamp Course.
 
-*[⌨️ (10:00:48) Lesson 7: Hardhat Fund Me](https://www.youtube.com/watch?v=gyMwXuJrbJQ&t=36048s)*
-
 [Full Repo](https://github.com/smartcontractkit/full-blockchain-solidity-course-js)
 
 - [Hardhat Fund Me](#hardhat-fund-me)
 - [Getting Started](#getting-started)
+  - [Security Considerations](security-considerations)
   - [Requirements](#requirements)
   - [Quickstart](#quickstart)
   - [Typescript](#typescript)
@@ -29,6 +28,12 @@ This is a section of the Javascript Blockchain/Smart Contract FreeCodeCamp Cours
 This project is apart of the Hardhat FreeCodeCamp video.
 
 # Getting Started
+
+
+
+## Security Considerations
+
+- [Avoiding Common Attacks](avoiding_common_attacks.md)
 
 ## Requirements
 
