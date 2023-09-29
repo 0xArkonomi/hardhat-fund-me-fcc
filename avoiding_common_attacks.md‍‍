@@ -36,3 +36,9 @@ event FundsWithdrawn(address indexed owner, uint256 amount);
 event PriceFeedUpdated(address previousPriceFeed, address newPriceFeed);
 ```
 
+## 6. **Input Validation**: Input validation is used throughout the contract to ensure that provided inputs are valid and not malicious. For instance, the `updatePriceFeed` function checks that the new price feed address is not the zero address before updating.
+
+```solidity
+require(newPriceFeedAddress != address(0), "Invalid address provided");
+```
+
