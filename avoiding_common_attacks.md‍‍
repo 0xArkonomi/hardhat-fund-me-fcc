@@ -1,0 +1,10 @@
+The FundMe smart contract has been designed to resist common attacks in Solidity through various security measures and best practices:
+
+## 1. **Access Control with Modifiers**: The contract uses function modifiers to control access to critical functions. For example, the `onlyOwner` modifier ensures that functions like `withdraw`, `updatePriceFeed`, and `cheaperWithdraw` can only be executed by the contract owner. This helps prevent unauthorized access to sensitive operations.
+
+```solidity
+modifier onlyOwner() {
+    if (msg.sender != owner) revert FundMe__NotOwner();
+    _;
+}
+```
