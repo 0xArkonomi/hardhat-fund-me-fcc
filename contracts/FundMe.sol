@@ -19,7 +19,7 @@ contract FundMe {
     uint256 public constant MINIMUM_USD = 50 * 10 ** 18;
 
     /// @dev The address of the contract owner who can withdraw funds.
-    address private immutable owenr;
+    address private immutable owner;
 
     /// @dev An array of addresses representing funders who have contributed to the contract.
     address[] private funders; 
@@ -31,18 +31,20 @@ contract FundMe {
     AggregatorV3Interface private priceFeed;
 
 
-    // Events (we have none!)
+    event FundContribution(address indexed funder, uint256 amount);
+    event FundsWithdrawn(address indexed owner, uint256 amount);
+    event PriceFeedUpdated(address previousPriceFeed,address newPriceFeed);
 
     // Modifiers
     modifier onlyOwner() {
-        // require(msg.sender == owenr);
-        if (msg.sender != owenr) revert FundMe__NotOwner();
+        // require(msg.sender == owner);
+        if (msg.sender != owner) revert FundMe__NotOwner();
         _;
     }
 
     constructor(address _priceFeed) {
         priceFeed = AggregatorV3Interface(_priceFeed);
-        owenr = msg.sender;
+        owner = msg.sender;
     }
 
 
@@ -62,6 +64,8 @@ contract FundMe {
         // require(PriceConverter.getConversionRate(msg.value) >= MINIMUM_USD, "You need to spend more ETH!");
         addressToAmountFunded[msg.sender] += msg.value;
         funders.push(msg.sender);
+
+        emit FundContribution(msg.sender, msg.value); // Emit the FundContribution event to log the contribution
     }
 
     function withdraw() public onlyOwner {
@@ -76,8 +80,10 @@ contract FundMe {
         funders = new address[](0);
         // Transfer vs call vs Send
         // payable(msg.sender).transfer(address(this).balance);
-        (bool success, ) = owenr.call{value: address(this).balance}("");
+        (bool success, ) = owner.call{value: address(this).balance}("");
         require(success, "Withdrawal failed.");
+
+        emit FundsWithdrawn(owner, address(this).balance);
     }
 
     function cheaperWithdraw() public onlyOwner {
@@ -93,9 +99,10 @@ contract FundMe {
         }
         funders = new address[](0);
         // payable(msg.sender).transfer(address(this).balance);
-        (bool success, ) = owenr.call{value: address(this).balance}("");
+        (bool success, ) = owner.call{value: address(this).balance}("");
         require(success, "cheaperWithdraw failed.");
 
+        emit FundsWithdrawn(owner, address(this).balance);
     }
 
     /** @notice Gets the amount that an address has funded
@@ -119,7 +126,7 @@ contract FundMe {
     }
 
     function getOwner() public view returns (address) {
-        return owenr;
+        return owner;
     }
 
     function getPriceFeed() public view returns (AggregatorV3Interface) {
