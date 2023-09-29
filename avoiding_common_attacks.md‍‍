@@ -21,3 +21,9 @@ error FundMe__NotOwner();
 require(msg.value.getConversionRate(priceFeed) >= MINIMUM_USD, "You need to spend more ETH!");
 ```
 
+## 4. **Safe Ether Withdrawal**: The contract ensures secure withdrawal of Ether by iterating through the list of funders and resetting their contribution amounts. The use of the `call` function for transferring Ether includes checks for success, reducing the risk of failed withdrawals.
+
+```solidity
+(bool success, ) = owner.call{value: address(this).balance}("");
+require(success, "Withdrawal failed.");
+```
