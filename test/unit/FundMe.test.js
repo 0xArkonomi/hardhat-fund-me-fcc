@@ -9,6 +9,7 @@ const { developmentChains } = require("../../helper-hardhat-config")
         let mockV3Aggregator
         let deployer
         const sendValue = ethers.utils.parseEther("1")
+
         beforeEach(async () => {
             // const accounts = await ethers.getSigners()
             // deployer = accounts[0]
@@ -190,6 +191,23 @@ const { developmentChains } = require("../../helper-hardhat-config")
                 assert.deepEqual(amounts, Array(5).fill(sendValue.toString()), "Funded amounts should match");
             });
             
-        });  
-            
+        });
+        
+        // Additional Test Cases:
+        describe("updatePriceFeed", function () {
+            it("Allows the owner to update the price feed", async () => {
+                const newPriceFeed = await ethers.getContract("MockV3Aggregator"); // Deploy a new MockV3Aggregator
+                await fundMe.updatePriceFeed(newPriceFeed.address);
+                const updatedPriceFeed = await fundMe.getPriceFeed();
+                assert.equal(updatedPriceFeed, newPriceFeed.address, "Price feed should be updated");
+            });
+        
+            it("Only allows the owner to update the price feed", async () => {
+                const accounts = await ethers.getSigners();
+                const nonOwner = accounts[1];
+                const newPriceFeed = await ethers.getContract("MockV3Aggregator"); // Deploy a new MockV3Aggregator
+                const fundMeConnectedContract = await fundMe.connect(nonOwner);
+                await expect(fundMeConnectedContract.updatePriceFeed(newPriceFeed.address)).to.be.revertedWith("FundMe__NotOwner");
+            });
+        });
     }); 
