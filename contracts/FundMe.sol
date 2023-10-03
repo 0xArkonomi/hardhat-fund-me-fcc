@@ -76,13 +76,13 @@ contract FundMe {
             funderIndex++
         ) {
             address funder = funders[funderIndex];
-            addressToAmountFunded[funder] = 0;
+            addressToAmountFunded[funder] = 0; // It writes to the storage every time the `for` loop execute 
         }
         funders = new address[](0);
         // Transfer vs call vs Send
         // payable(msg.sender).transfer(address(this).balance);
         (bool success, ) = owner.call{value: address(this).balance}("");
-        require(success, "Withdrawal failed.");
+        require(success, "Withdrawal failed."); // Added error message
 
         emit FundsWithdrawn(owner, address(this).balance);
     }
