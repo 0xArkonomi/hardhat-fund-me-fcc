@@ -51,6 +51,16 @@ const { developmentChains } = require("../../helper-hardhat-config")
                 const response = await fundMe.getFunder(0)
                 assert.equal(response, deployer)
             })
+            
+            // Add additional test cases for improve branch coverage up to the 100%
+            it("Funds when a funder sends exactly the minimum required amount in ETH", async () => {
+                const minimumFundingAmount = ethers.utils.parseEther("50");
+                await expect(fundMe.fund({ value: minimumFundingAmount })).to.not.be.reverted;
+            })
+            it("Funds when a funder sends more than the minimum required amount in ETH", async () => {
+                const moreThanMinimumFundingAmount = ethers.utils.parseEther("51");
+                await expect(fundMe.fund({ value: moreThanMinimumFundingAmount })).to.not.be.reverted;
+            });
         })
 
         describe("withdraw", function () {
@@ -145,6 +155,21 @@ const { developmentChains } = require("../../helper-hardhat-config")
                     fundMeConnectedContract.withdraw()
                 ).to.be.revertedWith("You're not the owner!")
             })
+
+            it("Withdraws when there is a single funder in the contract", async () => {
+                // Ensure there is a single funder
+                await fundMe.fund({ value: sendValue });
+                await expect(fundMe.withdraw()).to.not.be.reverted;
+            })
+            it("Withdraws when there are multiple funders in the contract", async () => {
+                // Ensure there are multiple funders
+                for (let i = 0; i < 5; i++) {
+                    await fundMe.fund({ value: sendValue });
+                }
+            
+                // Attempt to withdraw
+                await expect(fundMe.withdraw()).to.not.be.reverted;
+            })
         })
 
         // Additional Test Cases:
@@ -152,7 +177,7 @@ const { developmentChains } = require("../../helper-hardhat-config")
             it("Returns the owner of the contract", async () => {
                 const owner = await fundMe.getOwner();
                 assert.equal(owner, deployer, "Owner should match deployer");
-            });
+            })
         
             it("Returns the price feed contract address", async () => {
                 const priceFeedAddress = await fundMe.getPriceFeed();
@@ -161,13 +186,13 @@ const { developmentChains } = require("../../helper-hardhat-config")
                     mockV3Aggregator.address,
                     "Price feed address should match"
                 );
-            });
+            })
         
             it("Returns the version of the price feed", async () => {
                 const version = await fundMe.getVersion();
                 const expectedVersion = 0; // Convert 0 to BigNumber: ethers.BigNumber.from(0)
                 assert.isTrue(version.gte(expectedVersion), "Price feed version should match");
-            });
+            })
         
             it("Returns the list of funders", async () => {
                 const funders = [];
@@ -177,7 +202,7 @@ const { developmentChains } = require("../../helper-hardhat-config")
                 }
         
             assert.deepEqual(funders, funders.slice(0, 5), "Funders list should match");
-            });
+            })
         
             it("Returns the amount funded by an address", async () => {
                 const accounts = await ethers.getSigners();
@@ -189,8 +214,25 @@ const { developmentChains } = require("../../helper-hardhat-config")
                     amounts.push(amountFunded.toString()); // Convert to string
                 }
                 assert.deepEqual(amounts, Array(5).fill(sendValue.toString()), "Funded amounts should match");
-            });
+            })
+
+           
+            // Additional Test Cases for Getters
+            it("Returns the list of funders when there are multiple funders", async () => {
+                // Ensure there are multiple funders
+                for (let i = 0; i < 5; i++) {
+                    await fundMe.fund({ value: sendValue });
+                }
             
+                // Retrieve the list of funders
+                const funders = [];
+                for (let i = 0; i < 5; i++) {
+                    funders.push(await fundMe.getFunder(i));
+                }
+            
+                // Check if the returned funders match the expected funders
+                assert.deepEqual(funders, funders.slice(0, 5), "Funders list should match");
+            })
         });
         
         // Additional Test Cases:
@@ -200,7 +242,7 @@ const { developmentChains } = require("../../helper-hardhat-config")
                 await fundMe.updatePriceFeed(newPriceFeed.address);
                 const updatedPriceFeed = await fundMe.getPriceFeed();
                 assert.equal(updatedPriceFeed, newPriceFeed.address, "Price feed should be updated");
-            });
+            })
         
             it("Only allows the owner to update the price feed", async () => {
                 const accounts = await ethers.getSigners();
@@ -208,6 +250,16 @@ const { developmentChains } = require("../../helper-hardhat-config")
                 const newPriceFeed = await ethers.getContract("MockV3Aggregator"); // Deploy a new MockV3Aggregator
                 const fundMeConnectedContract = await fundMe.connect(nonOwner);
                 await expect(fundMeConnectedContract.updatePriceFeed(newPriceFeed.address)).to.be.revertedWith("You're not the owner!");
-            });
+            })
+
+            // it("Allows the owner to update the price feed to a new valid address", async () => {
+            //     const newPriceFeed = await ethers.getContract("NewMockV3Aggregator"); // Deploy a new MockV3Aggregator
+            //     await expect(fundMe.updatePriceFeed(newPriceFeed.address)).to.not.be.reverted;
+            // })
+            
+            it("Doesn't allow the owner to update the price feed to an invalid address", async () => {
+                // Attempt to update to an invalid address (address(0))
+                await expect(fundMe.updatePriceFeed(ethers.constants.AddressZero)).to.be.revertedWith("Invalid address provided");
+            })
         });
     }); 
