@@ -143,7 +143,7 @@ const { developmentChains } = require("../../helper-hardhat-config")
                 )
                 await expect(
                     fundMeConnectedContract.withdraw()
-                ).to.be.revertedWith("FundMe__NotOwner")
+                ).to.be.revertedWith("You're not the owner!")
             })
         })
 
@@ -207,7 +207,7 @@ const { developmentChains } = require("../../helper-hardhat-config")
                 const nonOwner = accounts[1];
                 const newPriceFeed = await ethers.getContract("MockV3Aggregator"); // Deploy a new MockV3Aggregator
                 const fundMeConnectedContract = await fundMe.connect(nonOwner);
-                await expect(fundMeConnectedContract.updatePriceFeed(newPriceFeed.address)).to.be.revertedWith("FundMe__NotOwner");
+                await expect(fundMeConnectedContract.updatePriceFeed(newPriceFeed.address)).to.be.revertedWith("You're not the owner!");
             });
         });
     }); 
