@@ -4,7 +4,6 @@ pragma solidity ^0.8.7;
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 import "./PriceConverter.sol";
 
-error FundMe__NotOwner();
 
 /**@title A sample Funding Contract
  * @author Patrick Collins - (Mohammad Mahdi Keshavarz Edition)
@@ -38,7 +37,7 @@ contract FundMe {
     // Modifiers
     modifier onlyOwner() {
         // require(msg.sender == owner);
-        if (msg.sender != owner) revert FundMe__NotOwner();
+        require(msg.sender == owner, "You're not the owner!");
         _;
     }
 
@@ -55,8 +54,12 @@ contract FundMe {
     //  4.Override
     //  5.Custom modifiers
 
-    /// @notice Funds our contract based on the ETH/USD price
-    function fund() public payable {
+    /**
+     * @notice Funds our contract based on the ETH/USD price
+     * @dev Changed the `fund` function to be `external` for gas optimization since 
+     * external functions use less gas than public ones.
+     */
+    function fund() external payable {
         require(
             msg.value.getConversionRate(priceFeed) >= MINIMUM_USD,
             "You need to spend more ETH!"
