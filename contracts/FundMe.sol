@@ -4,16 +4,15 @@ pragma solidity ^0.8.7;
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 import "./PriceConverter.sol";
 
-
 /**@title A sample Funding Contract
  * @author Patrick Collins - (Mohammad Mahdi Keshavarz Edition)
- * @notice Decentralized Funding Smart Contract Sample 
+ * @notice Decentralized Funding Smart Contract Sample
  * @dev This implements price feeds as our library
  */
 contract FundMe {
     // Type Declarations
     using PriceConverter for uint256;
-    
+
     /// @notice Minimum required funding in USD-equivalent Ether.
     uint256 public constant MINIMUM_USD = 50 * 10 ** 18;
 
@@ -21,7 +20,7 @@ contract FundMe {
     address private immutable owner;
 
     /// @dev An array of addresses representing funders who have contributed to the contract.
-    address[] private funders; 
+    address[] private funders;
 
     /// @dev A mapping that associates each funder's address with the amount they've funded.
     mapping(address => uint256) private addressToAmountFunded;
@@ -32,7 +31,7 @@ contract FundMe {
 
     event FundContribution(address indexed funder, uint256 amount);
     event FundsWithdrawn(address indexed owner, uint256 amount);
-    event PriceFeedUpdated(address previousPriceFeed,address newPriceFeed);
+    event PriceFeedUpdated(address previousPriceFeed, address newPriceFeed);
 
     // Modifiers
     modifier onlyOwner() {
@@ -46,7 +45,6 @@ contract FundMe {
         owner = msg.sender;
     }
 
-
     // The modifier order for a function should be:
     //  1.Visibility
     //  2.Mutability
@@ -56,7 +54,7 @@ contract FundMe {
 
     /**
      * @notice Funds our contract based on the ETH/USD price
-     * @dev Changed the `fund` function to be `external` for gas optimization since 
+     * @dev Changed the `fund` function to be `external` for gas optimization since
      * external functions use less gas than public ones.
      */
     function fund() external payable {
