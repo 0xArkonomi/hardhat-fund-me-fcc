@@ -86,24 +86,24 @@ contract FundMe {
         emit FundsWithdrawn(owner, balance);
     }
 
-    function cheaperWithdraw() public onlyOwner {
-        address[] memory tempFunders = funders;
-        // mappings can't be in memory, sorry!
-        for (
-            uint256 funderIndex = 0;
-            funderIndex < tempFunders.length;
-            funderIndex++
-        ) {
-            address funder = tempFunders[funderIndex];
-            addressToAmountFunded[funder] = 0;
-        }
-        funders = new address[](0);
-        // payable(msg.sender).transfer(address(this).balance);
-        (bool success, ) = owner.call{value: address(this).balance}("");
-        require(success, "cheaperWithdraw failed.");
+    // function cheaperWithdraw() public onlyOwner {
+    //     address[] memory tempFunders = funders;
+    //     // mappings can't be in memory, sorry!
+    //     for (
+    //         uint256 funderIndex = 0;
+    //         funderIndex < tempFunders.length;
+    //         funderIndex++
+    //     ) {
+    //         address funder = tempFunders[funderIndex];
+    //         addressToAmountFunded[funder] = 0;
+    //     }
+    //     funders = new address[](0);
+    //     // payable(msg.sender).transfer(address(this).balance);
+    //     (bool success, ) = owner.call{value: address(this).balance}("");
+    //     require(success, "cheaperWithdraw failed.");
 
-        emit FundsWithdrawn(owner, address(this).balance);
-    }
+    //     emit FundsWithdrawn(owner, address(this).balance);
+    // }
 
     function updatePriceFeed(address newPriceFeedAddress) public onlyOwner {
         require(newPriceFeedAddress != address(0), "Invalid address provided");
@@ -141,7 +141,7 @@ contract FundMe {
         return priceFeed;
     }
 
-    function getContractBalance() public view returns(uint256) {
-        return address(this).balance;
-    }
+    // function getContractBalance() public view returns(uint256) {
+    //     return address(this).balance;
+    // }
 }
