@@ -113,7 +113,7 @@ const { developmentChains } = require("../../helper-hardhat-config")
                     await fundMe.provider.getBalance(deployer)
 
                 // Act
-                const transactionResponse = await fundMe.cheaperWithdraw()
+                const transactionResponse = await fundMe.withdraw()
                 // Let's comapre gas costs :)
                 // const transactionResponse = await fundMe.withdraw()
                 const transactionReceipt = await transactionResponse.wait()
@@ -232,7 +232,7 @@ const { developmentChains } = require("../../helper-hardhat-config")
             
                 // Check if the returned funders match the expected funders
                 assert.deepEqual(funders, funders.slice(0, 5), "Funders list should match");
-            })
+            })            
         });
         
         // Additional Test Cases:
@@ -252,10 +252,10 @@ const { developmentChains } = require("../../helper-hardhat-config")
                 await expect(fundMeConnectedContract.updatePriceFeed(newPriceFeed.address)).to.be.revertedWith("You're not the owner!");
             })
 
-            // it("Allows the owner to update the price feed to a new valid address", async () => {
-            //     const newPriceFeed = await ethers.getContract("NewMockV3Aggregator"); // Deploy a new MockV3Aggregator
-            //     await expect(fundMe.updatePriceFeed(newPriceFeed.address)).to.not.be.reverted;
-            // })
+            it("Allows the owner to update the price feed to a new valid address", async () => {
+                const newPriceFeed = await ethers.getContract("MockV3Aggregator"); // Deploy a new MockV3Aggregator
+                await expect(fundMe.updatePriceFeed(newPriceFeed.address)).to.not.be.reverted;
+            })
             
             it("Doesn't allow the owner to update the price feed to an invalid address", async () => {
                 // Attempt to update to an invalid address (address(0))
