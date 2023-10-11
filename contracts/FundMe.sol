@@ -140,4 +140,8 @@ contract FundMe {
     function getPriceFeed() public view returns (AggregatorV3Interface) {
         return priceFeed;
     }
+
+    function getContractBalance() public view returns(uint256) {
+        return address(this).balance;
+    }
 }
