@@ -79,12 +79,11 @@ contract FundMe {
             addressToAmountFunded[funder] = 0; // It writes to the storage every time the `for` loop execute 
         }
         funders = new address[](0);
-        // Transfer vs call vs Send
-        // payable(msg.sender).transfer(address(this).balance);
+        uint256 balance = address(this).balance;
         (bool success, ) = owner.call{value: address(this).balance}("");
         require(success, "Withdrawal failed."); // Added error message
 
-        emit FundsWithdrawn(owner, address(this).balance);
+        emit FundsWithdrawn(owner, balance);
     }
 
     function cheaperWithdraw() public onlyOwner {
