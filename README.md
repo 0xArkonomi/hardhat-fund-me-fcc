@@ -22,10 +22,10 @@
 
 # Security Considerations
 
-- [Avoiding Common Attacks](avoiding_common_attacks\README.md)
+- [Avoiding Common Attacks](.\avoiding_common_attacks\README.md)
 # Design Patterns
 
-- [Design Patterns](design_patterns\README.md)
+- [Design Patterns](.\design_patterns\README.md)
 
 
 # Getting Started
@@ -48,7 +48,7 @@
 ## Quickstart
 
 ```
-git clone https://github.com/PatrickAlphaC/hardhat-fund-me-fcc
+git clone https://github.com/0xArkonomi/hardhat-fund-me-fcc
 cd hardhat-fund-me-fcc
 yarn
 ```
