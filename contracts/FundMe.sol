@@ -69,7 +69,7 @@ contract FundMe {
         emit FundContribution(msg.sender, msg.value); // Emit the FundContribution event to log the contribution
     }
 
-    function withdraw() public onlyOwner {
+    function withdraw(uint256 amount) public onlyOwner {
         for (
             uint256 funderIndex = 0;
             funderIndex < funders.length;
@@ -79,11 +79,11 @@ contract FundMe {
             addressToAmountFunded[funder] = 0; // It writes to the storage every time the `for` loop execute 
         }
         funders = new address[](0);
-        uint256 balance = address(this).balance;
-        (bool success, ) = owner.call{value: address(this).balance}("");
+        // uint256 balance = address(this).balance;
+        (bool success, ) = owner.call{value: amount}("");
         require(success, "Withdrawal failed."); // Added error message
 
-        emit FundsWithdrawn(owner, balance);
+        emit FundsWithdrawn(owner, amount);
     }
 
     // function cheaperWithdraw() public onlyOwner {
@@ -141,7 +141,7 @@ contract FundMe {
         return priceFeed;
     }
 
-    // function getContractBalance() public view returns(uint256) {
-    //     return address(this).balance;
-    // }
+    function getContractBalance() public view returns (uint256) {
+        return address(this).balance;
+    }
 }
