@@ -14,7 +14,7 @@ contract FundMe {
     using PriceConverter for uint256;
 
     /// @notice Minimum required funding in USD-equivalent Ether.
-    uint256 public constant MINIMUM_USD = 50 * 10 ** 18;
+    uint256 public constant MINIMUM_USD = 50 * 10**18;
 
     /// @dev The address of the contract owner who can withdraw funds.
     address private immutable owner;
@@ -65,7 +65,11 @@ contract FundMe {
 
     function withdraw(uint256 amount) public onlyOwner {
         // Loop through the funders and reset their funded amount.
-        for (uint256 funderIndex = 0; funderIndex < funders.length; funderIndex++) {
+        for (
+            uint256 funderIndex = 0;
+            funderIndex < funders.length;
+            funderIndex++
+        ) {
             address funder = funders[funderIndex];
             addressToAmountFunded[funder] = 0; // This line writes to storage every time the loop executes.
         }
