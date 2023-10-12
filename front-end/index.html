@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fund Me App</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1 class="title">Fund Me App</h1>
+    </div>
+    <div class="content">
+      <div class="left-panel">
+        <button id="connectButton">Connect</button><br>
+        <button type="button" id="fundButton" class="action-button fund-button">Fund</button>
+        <input id="ethAmount" placeholder="0.1" type="number" class="input-field amount-input"/><br>
+        <button id="withdrawButton" class="action-button withdraw-button">Withdraw</button>
+        <input id="ethAmountW" placeholder="0.1" type="number" class="input-field amount-input"/> <br>
+        <button type="button" id="updatePriceFeedButton" class="action-button update-button">Update Price Feed</button> 
+        <input id="newPriceFeedAddress" placeholder="Enter New Price Feed Address" class="input-field price-feed-input"/> <br>
+        <button id="balanceButton" class="action-button balance-button">Get Balance</button>
+        <div id="transactionStatus" class="transaction-status pending">Transaction Status: Initiating...</div>
+      </div>
+      <div class="right-panel">
+        <div class="balance-section">Contract Balance: <span id="balanceAmount" class="balance-amount">0 ETH</span></div>
+        <div id="fundContribution" class="event-display">
+          <div class="event-title">FundContribution Event Data:</div>
+          <div class="event-info">Funder: <span id="funderAddress" class="event-detail"></span></div> 
+          <div class="event-info">Amount: <span id="contributionAmount" class="event-detail"></span> ETH</div> 
+        </div>
+        <div id="fundsWithdrawn" class="event-display">
+          <div class="event-title">FundsWithdrawn Event Data:</div>
+          <div class="event-info">Withdrawer Owner: <span id="withdrawerOwner" class="event-detail"></span> ETH</div> 
+          <div class="event-info">Withdrawn Amount: <span id="withdrawnAmount" class="event-detail"></span> ETH</div> 
+        </div>
+        <div id="priceFeedUpdated" class="event-display">
+          <div class="event-title">PriceFeedUpdated Event Data:</div>
+          <div class="event-info">New Price Feed: <span id="newPriceFeed" class="event-detail"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./index.js" type="module"></script>
+</body>
+</html>

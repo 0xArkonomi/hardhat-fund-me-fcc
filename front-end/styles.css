@@ -1,0 +1,132 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background: linear-gradient(to bottom, #1f79ff, #6217fa);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 600px;
+  background-color: #d3ffeb;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header .title {
+  color: #007BFF;
+  font-size: 28px;
+}
+
+.left-panel {
+  flex: 1;
+  padding: 20px;
+}
+
+.right-panel {
+  flex: 1;
+  padding: 20px;
+  background: linear-gradient(to bottom, #6217fa, #1f79ff);
+  box-shadow: 0 0 5px rgba(255, 5, 5, 0.1);
+  border-radius: 3%;
+  color: #ffffff;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  
+}
+
+button:hover {
+  background-color: #0056b3;
+  
+}
+
+input[type="number"] {
+  padding: 5px;
+  border: 1px solid #ccc;
+  margin: 5px;
+}
+
+.container {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Text styles */
+.balance-section {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #d6d6d6;
+  border-radius: 10px;
+  text-align: center;
+  color: #525252
+}
+
+.event-display {
+  margin-top: 20px;
+}
+
+.event-title {
+  font-weight: bold;
+  color: #b2b2b2;
+}
+
+.event-info {
+  margin: 5px 0;
+}
+
+.event-detail {
+  color: #007BFF;
+  font-weight: bold;
+}
+
+.transaction-status {
+  margin-top: 20px;
+  background-color: #d6d6d6;
+  border-radius: 10px;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.transaction-status.pending {
+  text-align: center;
+  color: #525252;
+}
+
+.transaction-status.confirmed {
+  color: #00ff00;
+}
+
+.transaction-status.failed {
+  color: #ff0000;
+}
+
+/* Add this style to change text selection color to gray */
+::selection {
+  background-color: #808080; /* Use a gray color of your choice */
+  color: #fff; /* Change the text color to make it visible on the gray background */
+}
+
+/* Add this style to handle the selection color for older browsers */
+::-moz-selection {
+  background-color: #808080;
+  color: #fff;
+}
