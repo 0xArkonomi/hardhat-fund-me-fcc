@@ -86,7 +86,7 @@ describe("FundMe", function () {
     it("Should revert if the specified amount exceeds the contract balance", async () => {
       const contractBalance = await fundMe.provider.getBalance(fundMe.address);
       const amountToWithdraw = contractBalance.add(ethers.utils.parseEther("1")); // Exceed the contract balance
-      await expect(fundMe.withdraw(amountToWithdraw)).to.be.revertedWith("Withdrawal failed.");
+      await expect(fundMe.withdraw(amountToWithdraw)).to.be.revertedWith("Withdrawal failed");
     });
 
     it("Should allow the owner to withdraw the entire contract balance", async () => {
@@ -108,32 +108,6 @@ describe("FundMe", function () {
       
         assert.equal(finalContractBalance.toString(), initialContractBalance.sub(sendValue).toString());
     });
-      
-
-    // it("is allows owner to withdraw with multiple funders", async () => {      
-    //     const startingFundMeBalance = await fundMe.provider.getBalance(fundMe.address);
-    //     const startingDeployerBalance = await fundMe.provider.getBalance(deployer);
-      
-    //     const amountToWithdraw = ethers.utils.parseEther("2"); // Specify the amount to withdraw
-      
-    //     const transactionResponse = await fundMe.withdraw(amountToWithdraw);
-    //     const transactionReceipt = await transactionResponse.wait();
-    //     const { gasUsed, effectiveGasPrice } = transactionReceipt;
-    //     const withdrawGasCost = gasUsed.mul(effectiveGasPrice);
-      
-    //     const endingFundMeBalance = await fundMe.provider.getBalance(fundMe.address);
-    //     const endingDeployerBalance = await fundMe.provider.getBalance(deployer);
-      
-    //     assert.equal(
-    //       startingFundMeBalance.add(startingDeployerBalance).toString(),
-    //       endingDeployerBalance.add(withdrawGasCost).toString()
-    //     );
-      
-    //     for (i = 1; i < 6; i++) {
-    //       assert.equal(await fundMe.getAddressToAmountFunded(accounts[i].address), 0);
-    //     }
-    // });
-      
   });
 
   describe("getters", function () {
