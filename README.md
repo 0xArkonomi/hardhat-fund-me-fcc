@@ -22,10 +22,10 @@
 
 # Security Considerations
 
-- [Avoiding Common Attacks](.\avoiding_common_attacks\README.md)
+- [Avoiding Common Attacks](avoiding_common_attacks/README.md)
 # Design Patterns
 
-- [Design Patterns](.\design_patterns\README.md)
+- [Design Patterns](design_patterns/README.md)
 
 
 # Getting Started
