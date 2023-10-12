@@ -1,14 +1,9 @@
 # Hardhat Fund Me
 
-*This repo has been updated to work with Sepolia Testnet over Goerli.*
-
-This is a section of the Javascript Blockchain/Smart Contract FreeCodeCamp Course.
-
-[Full Repo](https://github.com/smartcontractkit/full-blockchain-solidity-course-js)
-
 - [Hardhat Fund Me](#hardhat-fund-me)
+- [Security Considerations](#security-considerations)
+- [Design Patterns](#design-patterns)
 - [Getting Started](#getting-started)
-  - [Security Considerations](#security-considerations)
   - [Requirements](#requirements)
   - [Quickstart](#quickstart)
   - [Typescript](#typescript)
@@ -25,15 +20,18 @@ This is a section of the Javascript Blockchain/Smart Contract FreeCodeCamp Cours
 - [Formatting](#formatting)
 - [Thank you!](#thank-you)
 
-This project is apart of the Hardhat FreeCodeCamp video.
+# Security Considerations
+
+- [Avoiding Common Attacks](avoiding_common_attacks\README.md)
+# Design Patterns
+
+- [Design Patterns](design_patterns\README.md)
+
 
 # Getting Started
 
 
 
-## Security Considerations
-
-- [Avoiding Common Attacks](https://github.com/0xArkonomi/hardhat-fund-me-fcc/blob/personalize-project/avoiding_common_attacks.md%E2%80%8D%E2%80%8D)
 
 ## Requirements
 
@@ -54,20 +52,6 @@ git clone https://github.com/PatrickAlphaC/hardhat-fund-me-fcc
 cd hardhat-fund-me-fcc
 yarn
 ```
-
-## Typescript
-
-For the typescript edition, run:
-
-```
-git checkout typescript
-```
-
-### Optional Gitpod
-
-If you can't or don't want to run and install locally, you can work with this repo in Gitpod. If you do this, you can skip the `clone this repo` part.
-
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#github.com/PatrickAlphaC/hardhat-fund-me-fcc)
 
 # Usage
 
@@ -176,9 +160,8 @@ yarn format
 
 If you appreciated this, feel free to follow me or donate!
 
-ETH/Polygon/Avalanche/etc Address: 0x9680201d9c93d65a3603d2088d125e955c73BD65
+ETH Address: 0x15D33c921efe6650f03c04Dc8F7ba36A731ADFCe
 
-[![Patrick Collins Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/PatrickAlphaC)
-[![Patrick Collins YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/channel/UCn-3f8tw_E1jZvhuHatROwA)
-[![Patrick Collins Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/patrickalphac/)
-[![Patrick Collins Medium](https://img.shields.io/badge/Medium-000000?style=for-the-badge&logo=medium&logoColor=white)](https://medium.com/@patrick.collins_58673/)
+LinkedIn : [Mohammmad Mahdi Keshavarz](https://www.linkedin.com/in/mohammad-mahdi-keshavarz-897a911b4)  
+Telegram : [@OxMahdifx](https://t.me/oxmahdifx)   
+X (Formerly Twitter) : [@Mawhdi](https://twitter.com/mawhdi) 
