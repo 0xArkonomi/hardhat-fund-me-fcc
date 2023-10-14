@@ -1,31 +1,17 @@
 # Hardhat Fund Me
 
-- [Hardhat Fund Me](#hardhat-fund-me)
 - [Security Considerations](#security-considerations)
 - [Design Patterns](#design-patterns)
-- [Getting Started](#getting-started)
-  - [Requirements](#requirements)
-  - [Quickstart](#quickstart)
-  - [Typescript](#typescript)
-    - [Optional Gitpod](#optional-gitpod)
-- [Usage](#usage)
-  - [Testing](#testing)
-    - [Test Coverage](#test-coverage)
-- [Deployment to a testnet or mainnet](#deployment-to-a-testnet-or-mainnet)
-  - [Scripts](#scripts)
-  - [Estimate gas](#estimate-gas)
-    - [Estimate gas cost in USD](#estimate-gas-cost-in-usd)
-  - [Verify on etherscan](#verify-on-etherscan)
-- [Linting](#linting)
-- [Formatting](#formatting)
-- [Thank you!](#thank-you)
+- [Demo Video](#demo-video)
 
 # Security Considerations
-
 - [Avoiding Common Attacks](avoiding_common_attacks/README.md)
-# Design Patterns
 
+# Design Patterns
 - [Design Patterns](design_patterns/README.md)
+
+# Demo video
+- [Demo Video](https://youtu.be/rFuTNtqIZws)
 
 
 # Getting Started
